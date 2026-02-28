@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio Saya</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <!-- Particle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid #00f7ff;
+      box-shadow: 0 0 25px #00f7ff;
+      object-fit: cover;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+  /* Header / Judul */
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Paragraf dan teks panjang */
+body, p, li {
+  font-family: 'Exo 2', sans-serif;
+  line-height: 1.6;
+}
+
+
+
+    nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00f7ff;
+      text-shadow: 0 0 10px #00f7ff;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: 0.8s;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #00f7ff;
+    }
+
+    .skill {
+      margin-bottom: 15px;
+    }
+
+    .skill-bar {
+      height: 15px;
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #00f7ff, #ff00c8);
+      border-radius: 10px;
+      transition: width 1.5s ease;
+    }
+
+    .project {
+      margin-bottom: 15px;
+      padding: 15px;
+      border: 1px solid #00f7ff;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      background: rgba(0, 247, 255, 0.1);
+      box-shadow: 0 0 15px #00f7ff;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 15px;
+      box-shadow: 0 0 25px cyan;
+    }
+
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      padding: 20px;
+      user-select: none;
+    }
+
+    .modal-prev { left: 30px; }
+    .modal-next { right: 30px; }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #0f0c29;
+      margin-top: 50px;
+    }
+
+    /* Swiper overrides */
+    .swiper {
+      width: 100%;
+      height: 180px;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 2px solid #00f7ff;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Particle background -->
+  <div id="tsparticles" style="position: fixed; inset:0; z-index:-1;"></div>
+
+  <header>
+    <img src="porto/pasfoto.jpg" alt="Foto Profil" class="profile-pic">
+    <h1>FAHMI PERDANA WICAKSONO</h1>
+    <p>🎮 Web Developer | Leveling Up </p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Quest</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+  <div class="card" style="text-align: justify;">
+    <h2>🧑‍💻 About Me</h2>
+    <p>
+      Halo! Saya <strong>Fahmi Perdana Wicaksono</strong>, seorang <strong>Web Developer</strong> yang berpengalaman membangun website dan aplikasi web yang modern, interaktif, dan responsif. 
+      Saya fokus menciptakan pengalaman pengguna yang optimal melalui desain yang bersih, performa cepat, dan solusi teknis yang tepat.
+    </p>
+    <p><br>
+      Saya selalu bersemangat mempelajari teknologi terbaru dan menerapkannya untuk menciptakan solusi digital yang efisien dan inovatif. 
+      Setiap proyek saya kerjakan dengan detail dan fokus pada kualitas, fungsionalitas, dan kenyamanan pengguna. Dengan pengalaman dalam berbagai proyek web, saya mampu menghadirkan website dan aplikasi yang handal, mudah digunakan, dan sesuai kebutuhan klien.
+  
+    </p>
+  
+  </div>
+</section>
+
+
+  <section id="skills">
+  <div class="card">
+    <h2>⚡ Skills</h2>
+
+    <div class="skill">
+      <p>HTML</p>
+      <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
+    </div>
+    <div class="skill">
+      <p>PHP</p>
+      <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+    </div>
+    <div class="skill">
+      <p>CSS</p>
+      <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+    </div>
+    <div class="skill">
+      <p>JavaScript</p>
+      <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+    </div>
+    <div class="skill">
+      <p>Next.js / React</p>
+      <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
+    </div>
+  </div>
+</section>
+
+
+ <section id="projects">
+  <div class="card">
+    <h2>🏆 Completed Quest</h2>
+
+    <!-- PROJECT 1 -->
+    <div class="project">
+      <h3>🕒 Website Absensi Karyawan PT. Srikandi Inti Prakarsa</h3>
+      <p>CodeIgniter + MySQL</p>
+      <p>Website ini digunakan untuk mempermudah absensi karyawan dengan fitur login, rekap absensi, dan laporan otomatis. Fokus pada keamanan data dan user-friendly interface.</p>
+      <p>Link demo: <a href="https://srikandiabsensi.infinityfree.me/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p>
+      <div class="swiper gallery-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="porto/absen1.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/absen2.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/absen3.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/absen4.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/absen5.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/absen6.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/absen7.png" onclick="openModal(this.src)"></div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project">
+      <h3>🚚 Sistem Pengiriman Barang Otomatis Toko Bangunan Sinar Terang BSD</h3>
+      <p>PHP Native + Algoritma Heuristik</p>
+      <p>Sistem ini mengotomatisasi pengiriman barang berdasarkan algoritma heuristik untuk menentukan rute tercepat. Termasuk manajemen stok, tracking pengiriman, dan laporan pengiriman harian.</p>
+      <p>Link demo: <a href="https://tbsinarterang.web.id/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p>
+
+      <div class="swiper gallery-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="porto/kirim1.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/kirim2.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/kirim3.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/kirim4.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/kirim5.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/kirim6.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/kirim7.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/kirim8.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/kirim9.png" onclick="openModal(this.src)"></div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project">
+      <h3>📚 Sistem Informasi Manajemen Perpustakaan</h3>
+      <p>PHP Native + MySQL</p>
+      <p>Fokus utama aplikasi ini adalah memberikan kemudahan bagi pustakawan dalam mengelola data buku, anggota, hingga memproses transaksi peminjaman secara efisien dan terorganisir.
+
+      <div class="swiper gallery-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="porto/perpus1.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/perpus2.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/perpus3.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/perpus4.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/perpus5.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/perpus6.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/perpus7.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/perpus8.png" onclick="openModal(this.src)"></div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project">
+      <h3>💰 Sistem Penggajian Karyawan</h3>
+      <p>PHP Native + MySQL</p>
+      <p>Aplikasi ini dirancang untuk meminimalkan risiko kesalahan perhitungan manual serta mempercepat proses distribusi slip gaji kepada seluruh karyawan.</p>
+
+      <div class="swiper gallery-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="porto/gaji1.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/gaji2.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/gaji3.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/gaji4.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/gaji5.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/gaji6.png" onclick="openModal(this.src)"></div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project">
+      <h3>🤖 Chatbot Sederhana</h3>
+      <p>Next.js + API Gemini</p>
+      <p>Chatbot ini memberikan jawaban otomatis menggunakan API Gemini. Dirancang untuk membantu pertanyaan umum pengguna dengan UI sederhana dan respons cepat.</p>
+  
+      <div class="swiper gallery-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="porto/chat1.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/chat2.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/chat3.png" onclick="openModal(this.src)"></div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Contact Section -->
+<section id="contact">
+  <div class="card">
+    <h2>📡 Contact</h2>
+
+    <p>
+      <i class="fa-solid fa-envelope" style="color:#00f7ff; margin-right:8px;"></i>
+      Email: <a href="mailto:fahmiperdana43@gmail.com" style="color:#00f7ff; text-decoration:underline;">fahmiperdana43@gmail.com</a>
+    </p>
+
+    <p>
+      <i class="fa-brands fa-whatsapp" style="color:#00f7ff; margin-right:8px;"></i>
+      WhatsApp: <a href="https://wa.me/6288210841990" target="_blank" style="color:#00f7ff; text-decoration:underline;">+62 882-1084-1990</a>
+    </p>
+
+
+    <p>
+      <i class="fa-brands fa-github" style="color:#00f7ff; margin-right:8px;"></i>
+      GitHub: <a href="https://github.com/fahmipw" target="_blank" style="color:#00f7ff; text-decoration:underline;">github.com/fahmipw</a>
+    </p>
+  </div>
+</section>
+
+<!-- Font Awesome CDN untuk icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQwKk0dHzT5WXY+azY4I4XqkqRPPuEqwDHRyVTV8a7aGnXHru1eMSppp92cnA7X2xgU8Ydp+y1dj1hDN0i2ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <footer>
+    <p>© 2026 Fahmi |  Mode 🎮</p>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="imageModal" class="modal">
+    <span class="modal-close" onclick="closeModal()">✖</span>
+    <span class="modal-nav modal-prev" onclick="prevImage()">❮</span>
+    <img id="modalImage">
+    <span class="modal-nav modal-next" onclick="nextImage()">❯</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    // Particle JS
+    tsParticles.load("tsparticles", {
+      fullScreen:{enable:false},
+      particles:{
+        number:{value:80,density:{enable:true,area:800}},
+        color:{value:["#00f7ff","#ff00c8","#ffffff"]},
+        shape:{type:"circle"},
+        opacity:{value:0.7},
+        size:{value:{min:1,max:4}},
+        move:{enable:true,speed:1,direction:"none",outModes:"bounce"},
+        links:{enable:true,distance:120,color:"#00f7ff",opacity:0.4,width:1}
+      },
+      interactivity:{
+        events:{onHover:{enable:true,mode:"grab"},onClick:{enable:true,mode:"push"}},
+        modes:{grab:{distance:150,links:{opacity:0.7}},push:{quantity:4}}
+      },
+      retina_detect:true
+    });
+
+    // Scroll animation
+    const cards = document.querySelectorAll('.card');
+    const skillFills = document.querySelectorAll('.skill-fill');
+    window.addEventListener('scroll', ()=>{
+      const triggerBottom = window.innerHeight * 0.8;
+      cards.forEach(card => {
+        const boxTop = card.getBoundingClientRect().top;
+        if(boxTop < triggerBottom){
+          card.classList.add('show');
+          skillFills.forEach(fill => fill.style.width = fill.getAttribute('data-width'));
+        }
+      });
+    });
+
+    // Modal
+    let currentImages = [], currentIndex = 0;
+    function openModal(src){
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImage");
+      const gallery = event.target.closest('.swiper-wrapper');
+      currentImages = Array.from(gallery.querySelectorAll("img")).map(img => img.src);
+      currentIndex = currentImages.indexOf(src);
+      modal.style.display = "flex";
+      modalImg.src = src;
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(){
+      document.getElementById("imageModal").style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function nextImage(){
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      document.getElementById("modalImage").src = currentImages[currentIndex];
+    }
+
+    function prevImage(){
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      document.getElementById("modalImage").src = currentImages[currentIndex];
+    }
+
+    document.addEventListener("keydown", function(e){
+      const modal = document.getElementById("imageModal");
+      if(modal.style.display === "flex"){
+        if(e.key === "ArrowRight") nextImage();
+        if(e.key === "ArrowLeft") prevImage();
+        if(e.key === "Escape") closeModal();
+      }
+    });
+
+    // Swiper init
+    document.querySelectorAll('.gallery-swiper').forEach(swiperEl=>{
+      new Swiper(swiperEl,{
+        slidesPerView:1,
+        spaceBetween:20,
+        loop:true,
+        navigation:{
+          nextEl: swiperEl.querySelector('.swiper-button-next'),
+          prevEl: swiperEl.querySelector('.swiper-button-prev'),
+        },
+        pagination:{
+          el: swiperEl.querySelector('.swiper-pagination'),
+          clickable:true,
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
