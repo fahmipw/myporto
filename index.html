@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portofolio Saya</title>
@@ -8,6 +9,9 @@
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQwKk0dHzT5WXY+azY4I4XqkqRPPuEqwDHRyVTV8a7aGnXHru1eMSppp92cnA7X2xgU8Ydp+y1dj1hDN0i2ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  ...
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -206,7 +210,102 @@ body, p, li {
       cursor: pointer;
       border: 2px solid #00f7ff;
     }
-  </style>
+    .contact-icon {
+    display: inline-flex;
+    align-items: center;
+    color: #00f7ff;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-icon:hover svg {
+    transform: scale(1.2) rotate(-5deg);
+    transition: transform 0.3s ease;
+  }
+
+  .contact-icon svg {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Animasi bergerak naik-turun terus menerus (optional) */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .float svg {
+    animation: float 2s ease-in-out infinite;
+  }
+  /* Container tulisan */
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  text-align: center;
+  padding: 0;              /* hilangkan padding agar tepat di tengah */
+}
+
+header h1:hover {
+  text-shadow: 
+    2px 0 #ff00c8, 
+    -2px 0 #00f7ff;
+  animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+.project {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  transition: all 0.4s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: #00f7ff;
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.4), inset 0 0 10px rgba(0, 247, 255, 0.2);
+}
+
+/* Tambahan: Label 'Level' atau 'Status' pada proyek */
+.project h3::before {
+  font-size: 0.7rem;
+  color: #ff00c8;
+  vertical-align: middle;
+}
+.project p:first-of-type {
+  display: inline-block;
+  background: #683ad4;
+  color: white;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+/* Animasi mengetik */
+@keyframes typing {
+  0% { width: 0; }
+  50% { width: 24ch; }
+  100% { width: 0; }
+}
+
+/* Animasi kursor berkedip */
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #00f7ff; }
+}
+</style>
 </head>
 
 <body>
@@ -215,6 +314,7 @@ body, p, li {
 
   <header>
     <img src="porto/pasfoto.jpg" alt="Foto Profil" class="profile-pic">
+    <div class="typing-container">
     <h1>FAHMI PERDANA W.</h1>
     <p>🎮 Web Developer | Fullstack </p>
     <nav>
@@ -392,7 +492,8 @@ body, p, li {
   <div class="card">
     <h2>📡 Contact</h2>
 
-   <!-- WhatsApp -->
+   
+  <!-- WhatsApp -->
   <p>
     <a href="https://wa.me/6288210841990" target="_blank" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none; margin-bottom: 8px;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#00f7ff" width="20" height="20" style="margin-right:8px;">
@@ -433,10 +534,10 @@ body, p, li {
       Email
     </a>
   </p>
+
+  </div>
 </section>
 
-<!-- Font Awesome CDN untuk icon -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQwKk0dHzT5WXY+azY4I4XqkqRPPuEqwDHRyVTV8a7aGnXHru1eMSppp92cnA7X2xgU8Ydp+y1dj1hDN0i2ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
   <footer>
